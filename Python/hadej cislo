@@ -1,0 +1,16 @@
+import random
+
+tajne_cislo = random.randint(1, 50)
+
+for pokus in range(5):
+    x = int(input("Hádej číslo: "))
+    if x == tajne_cislo:
+        print("Uhodnuto! ✅")
+        break
+    else:
+        if x < tajne_cislo:
+            print("Více ➡️")
+        else:
+            print("Méně ⬅️")
+else:
+    print(f"Nepovedlo se! ❌ Tajné číslo bylo {tajne_cislo}.")
