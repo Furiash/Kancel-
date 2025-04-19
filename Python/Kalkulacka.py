@@ -52,4 +52,4 @@ elif ans == "6":
         print("Výsledek:", round(a ** (1 / b), 5))
 
 else:
-    print("Neplatná volba.")
+    print("Neplatná volba")
