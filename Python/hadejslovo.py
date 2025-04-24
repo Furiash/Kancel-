@@ -1,7 +1,7 @@
 import random
 
 uhodnuta_pismena = []
-slova = ["program", "python", "kolo", "auto", "stroj"]
+slova = ["program", "python", "kolo", "auto", "stroj", "kniha", "zahrada", "pocitac", "slunce", "strom", "kvetina", "zvire", "jidlo"]
 tajne_slovo = random.choice(slova)
 max_pokusu = 5  # Maximální počet pokusů
 
