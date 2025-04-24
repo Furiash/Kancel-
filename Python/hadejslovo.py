@@ -9,26 +9,32 @@ print("Hra: Hádej slovo po písmenkách!")
 print(f"Máš {max_pokusu} pokusů na uhodnutí slova.")
 
 while True:
-    hadani = input("Zadej písmeno: ").lower()
+    hadani = input("Zadej písmeno nebo celé slovo: ").lower()
 
-    # Kontrola, zda je zadáno pouze jedno písmeno
+    # Pokud uživatel zadal celé slovo
+    if hadani == tajne_slovo:
+        print("Gratuluji, uhodl jsi celé slovo! 🎉")
+        break
+
+    # Pokud zadal neplatný vstup
     if len(hadani) != 1 or not hadani.isalpha():
-        print("Zadej prosím pouze jedno písmeno.")
+        print("Zadej prosím pouze jedno písmeno nebo celé slovo.")
         continue
 
-    # Kontrola, zda písmeno již bylo uhodnuto
+    # Pokud už bylo písmeno hádáno
     if hadani in uhodnuta_pismena:
         print("Toto písmeno jsi už uhodl, zkus jiné.")
         continue
 
+    # Správné nebo špatné písmeno
     if hadani in tajne_slovo:
         print("Správně!")
         uhodnuta_pismena.append(hadani)
     else:
         print("Špatně!")
-        max_pokusu -= 1  # Snížíme počet pokusů
+        max_pokusu -= 1
 
-    # Vytvoříme řetězec s uhodnutými písmeny a _ místo neuhodnutých
+    # Vygenerování zobrazeného slova
     vystup = ""
     for pismeno in tajne_slovo:
         if pismeno in uhodnuta_pismena:
@@ -39,12 +45,12 @@ while True:
     print("Slovo:", vystup)
     print(f"Zbývá pokusů: {max_pokusu}")
 
-    # Konec hry, pokud byly pokusy vyčerpány
+    # Konec hry kvůli vyčerpání pokusů
     if max_pokusu == 0:
         print("Bohužel, došly ti pokusy. Slovo bylo:", tajne_slovo)
         break
 
-    # Kontrola, zda bylo celé slovo uhodnuto
+    # Konec hry, pokud je slovo uhodnuté
     if vystup == tajne_slovo:
         print("Gratuluji, uhodl jsi celé slovo! 🎉")
         break
