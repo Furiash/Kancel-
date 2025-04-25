@@ -1,56 +1,73 @@
 import random
 
-uhodnuta_pismena = []
-slova = ["program", "python", "kolo", "auto", "stroj", "kniha", "zahrada", "pocitac", "slunce", "strom", "kvetina", "zvire", "jidlo"]
-tajne_slovo = random.choice(slova)
-max_pokusu = 5  # Maximální počet pokusů
+def hraj_hru():
+    uhodnuta_pismena = []
+    neuhodnuta_pismena = []
+    slova = ["program", "python", "kolo", "auto", "stroj", "kniha", "zahrada", "pocitac", "slunce", "strom", "kvetina", "zvire", "jidlo"]
+    tajne_slovo = random.choice(slova)
 
-print("Hra: Hádej slovo po písmenkách!")
-print(f"Máš {max_pokusu} pokusů na uhodnutí slova.")
+    print("Hra: Hádej slovo po písmenkách!")
 
-while True:
-    hadani = input("Zadej písmeno nebo celé slovo: ").lower()
-
-    # Pokud uživatel zadal celé slovo
-    if hadani == tajne_slovo:
-        print("Gratuluji, uhodl jsi celé slovo! 🎉")
-        break
-
-    # Pokud zadal neplatný vstup
-    if len(hadani) != 1 or not hadani.isalpha():
-        print("Zadej prosím pouze jedno písmeno nebo celé slovo.")
-        continue
-
-    # Pokud už bylo písmeno hádáno
-    if hadani in uhodnuta_pismena:
-        print("Toto písmeno jsi už uhodl, zkus jiné.")
-        continue
-
-    # Správné nebo špatné písmeno
-    if hadani in tajne_slovo:
-        print("Správně!")
-        uhodnuta_pismena.append(hadani)
-    else:
-        print("Špatně!")
-        max_pokusu -= 1
-
-    # Vygenerování zobrazeného slova
-    vystup = ""
-    for pismeno in tajne_slovo:
-        if pismeno in uhodnuta_pismena:
-            vystup += pismeno
+    try:
+        obtiznost = int(input("Obtížnost: 1 = lehká, 2 = střední, 3 = těžká: "))
+        if obtiznost == 1:
+            max_pokusu = 10
+        elif obtiznost == 2:
+            max_pokusu = 7
+        elif obtiznost == 3:
+            max_pokusu = 5
         else:
-            vystup += "_"
+            print("Neplatná obtížnost, nastavím 5 pokusů.")
+            max_pokusu = 5
+    except ValueError:
+        print("Zadání nebylo platné, nastavím 5 pokusů.")
+        max_pokusu = 5
 
-    print("Slovo:", vystup)
-    print(f"Zbývá pokusů: {max_pokusu}")
+    print(f"Máš {max_pokusu} pokusů na uhodnutí slova.")
 
-    # Konec hry kvůli vyčerpání pokusů
-    if max_pokusu == 0:
-        print("Bohužel, došly ti pokusy. Slovo bylo:", tajne_slovo)
-        break
+    while True:
+        hadani = input("Zadej písmeno nebo celé slovo: ").lower()
 
-    # Konec hry, pokud je slovo uhodnuté
-    if vystup == tajne_slovo:
-        print("Gratuluji, uhodl jsi celé slovo! 🎉")
+        if hadani == tajne_slovo:
+            print("Gratuluji, uhodl jsi celé slovo! 🎉")
+            break
+
+        if len(hadani) != 1 or not hadani.isalpha():
+            print("Zadej prosím jedno písmeno nebo celé slovo.")
+            continue
+
+        if hadani in uhodnuta_pismena or hadani in neuhodnuta_pismena:
+            print("Toto písmeno jsi už zkusil.")
+            continue
+
+        if hadani in tajne_slovo:
+            print("Správně!")
+            uhodnuta_pismena.append(hadani)
+        else:
+            print("Špatně!")
+            neuhodnuta_pismena.append(hadani)
+            max_pokusu -= 1
+
+        vystup = ""
+        for pismeno in tajne_slovo:
+            vystup += pismeno if pismeno in uhodnuta_pismena else "_"
+
+        print("Slovo:", vystup)
+        print(f"Zbývá pokusů: {max_pokusu}")
+        print(f"Špatná písmena: {neuhodnuta_pismena}")
+
+        if max_pokusu == 0:
+            print("Došly ti pokusy. Slovo bylo:", tajne_slovo)
+            break
+
+        if vystup == tajne_slovo:
+            print("Gratuluji, uhodl jsi celé slovo! 🎉")
+            break
+
+# Hlavní smyčka hry
+while True:
+    hraj_hru()
+    znova = input("Chceš hrát znovu? (ano/ne): ").lower()
+    if znova != "ano":
+        print("Díky za hru! 👋")
         break
