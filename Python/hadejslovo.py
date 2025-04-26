@@ -1,6 +1,8 @@
 import random
+vyhry = 0
 
 def hraj_hru():
+    global vyhry
     uhodnuta_pismena = []
     neuhodnuta_pismena = []
     slova = ["program", "python", "kolo", "auto", "stroj", "kniha", "zahrada", "pocitac", "slunce", "strom", "kvetina", "zvire", "jidlo"]
@@ -30,6 +32,8 @@ def hraj_hru():
 
         if hadani == tajne_slovo:
             print("Gratuluji, uhodl jsi celé slovo! 🎉")
+            vyhry += 1
+            print(f"Počet výher: {vyhry}")
             break
 
         if len(hadani) != 1 or not hadani.isalpha():
@@ -54,7 +58,7 @@ def hraj_hru():
 
         print("Slovo:", vystup)
         print(f"Zbývá pokusů: {max_pokusu}")
-        print(f"Špatná písmena: {neuhodnuta_pismena}")
+        print(f"Špatná písmena: {', '.join(neuhodnuta_pismena)}")
 
         if max_pokusu == 0:
             print("Došly ti pokusy. Slovo bylo:", tajne_slovo)
@@ -62,6 +66,8 @@ def hraj_hru():
 
         if vystup == tajne_slovo:
             print("Gratuluji, uhodl jsi celé slovo! 🎉")
+            vyhry += 1
+            print(f"Počet výher: {vyhry}")
             break
 
 # Hlavní smyčka hry
@@ -69,5 +75,5 @@ while True:
     hraj_hru()
     znova = input("Chceš hrát znovu? (ano/ne): ").lower()
     if znova != "ano":
-        print("Díky za hru! 👋")
+        print(f"Díky za hru! 👋 Celkový počet výher: {vyhry}")
         break
