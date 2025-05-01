@@ -48,8 +48,8 @@ while True:
         print("Nemáš dostatek kreditů na další hru. Konec.")
         break
 
-    pokracovat = input("Chceš hrát znovu? (ano/ne): ").lower()
-    if pokracovat != "ano":
+    pokracovat = input("Chceš hrát znovu? (a/n): ").lower()
+    if pokracovat != "a":
         print("Díky za hru!")
         print(f"Tvůj konečný kredit: {credit}")
         break
