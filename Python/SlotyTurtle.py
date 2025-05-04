@@ -60,8 +60,8 @@ def zobraz_vysledek(vyhra):
     text.goto(0, -100)
     time.sleep(1)
     text.clear()
-    if vyhra:
-        text.write(f"Výhra! Vyhrál jsi {vyhra} kreditů🎉", align="center", font=("Arial", 24, "bold"))
+    if vyhra > 0:
+        text.write(f"Výhra! Vyhrál jsi {vyhra} kreditů 🎉", align="center", font=("Arial", 24, "bold"))
     else:
         text.write("Prohra! 😔", align="center", font=("Arial", 24, "bold"))
 
@@ -85,10 +85,11 @@ def tocení():
         text.write(symbol, font=("Arial", 20, "normal"))
 
     if symboly_na_slotu[0] == symboly_na_slotu[1] == symboly_na_slotu[2]:
-        zobraz_vysledek(True)
-        return vyhry[symboly_na_slotu[0]]
+        vyhra = vyhry[symboly_na_slotu[0]]
+        zobraz_vysledek(vyhra)
+        return vyhra
     else:
-        zobraz_vysledek(False)
+        zobraz_vysledek(0)
         return 0
 
 # Spustí točení
