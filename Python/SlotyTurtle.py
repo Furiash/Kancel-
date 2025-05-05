@@ -16,9 +16,9 @@ prohra_zvuk = pygame.mixer.Sound("prohra.mp3")
 pygame.mixer.music.play(-1)  # -1 = stále dokola
 
 # Nastav hlasitost hudby
-pygame.mixer.music.set_volume(1.0)  # Hlasitost 100%
-vyhra_zvuk.set_volume(0.4)  # Hlasitost 60%
-prohra_zvuk.set_volume(0.2)  # Hlasitost 30%
+pygame.mixer.music.set_volume(0.3)  # Hlasitost 30%
+vyhra_zvuk.set_volume(0.9)  # Hlasitost 90%
+prohra_zvuk.set_volume(0.4)  # Hlasitost 40%
 
 # --- Nastavení obrazovky ---
 okno = turtle.Screen()
