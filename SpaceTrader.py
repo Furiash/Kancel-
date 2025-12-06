@@ -29,10 +29,10 @@ def day():
     print("You have", titanium, "units of titanium.")
     print("You have", gold, "units of gold.")
     
-    Iron_exchange_rate = random.uniform(0.75, 1.25) * iron_base_value
-    Copper_exchange_rate = random.uniform(0.75, 1.25) * copper_base_value
-    Titanium_exchange_rate = random.uniform(0.75, 1.25) * titanium_base_value
-    Gold_exchange_rate = random.uniform(0.75, 1.25) * gold_base_value
+    Iron_exchange_rate = round(random.uniform(0.75, 1.25) * iron_base_value)
+    Copper_exchange_rate = round(random.uniform(0.75, 1.25) * copper_base_value)
+    Titanium_exchange_rate = round(random.uniform(0.75, 1.25) * titanium_base_value)
+    Gold_exchange_rate = round(random.uniform(0.75, 1.25) * gold_base_value)
 
     print("Today´s iron value is", Iron_exchange_rate)
     print("Today´s copper value is", Copper_exchange_rate)
@@ -204,7 +204,12 @@ def day():
         return
     
     current_day = current_day + 1
-    input_bills = input("Do you want to pay your bills? (yes/no) ").lower()
+
+
+
+while True:
+    day()
+        input_bills = input("Do you want to pay your bills? (yes/no) ").lower()
     if input_bills == "yes":
         money = money - 100
 
@@ -214,8 +219,3 @@ def day():
     else:
         print("I don´t know what you mean, but you still pay")
         money = money - 100
-
-
-
-while True:
-    day()
