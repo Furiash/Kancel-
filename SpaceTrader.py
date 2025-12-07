@@ -2,7 +2,7 @@ import random
 import time
 
 current_day = 0
-money = 1000
+money = 500
 iron = 5
 iron_base_value = 70
 copper = 8
@@ -32,6 +32,19 @@ def day():
 
     if money <= 0:
         print("You have run out of money! Game over.")
+        time.sleep(2)
+        print("You ended the game at day", current_day)
+        time.sleep(2)
+        print("Final inventory: ")
+        time.sleep(2)
+        print("Iron:", iron)
+        time.sleep(2)
+        print("Copper:", copper)
+        time.sleep(2)
+        print("Titanium:", titanium)
+        time.sleep(2)
+        print("Gold:", gold)
+        time.sleep(2)
         exit()
     
     print("Day", current_day)
@@ -64,7 +77,7 @@ def day():
     print("Today's special item is", special_item)
     time.sleep(2)
 
-    input_a = input("Do you want to buy or sell? (buy/sell) ").lower()
+    input_a = input("Do you want to buy or sell? You can also leave. (buy/sell/exit) ").lower()
     time.sleep(2)
 
     if input_a == "buy":
@@ -80,7 +93,7 @@ def day():
             
             price = Iron_exchange_rate
             if input_b == special_item:
-                price = price / 2
+                price = price / 1.5
                 
             if money < input_c * price:
                 print("You don't have enough money to buy that much iron.")
@@ -100,7 +113,7 @@ def day():
                 return
             price = Copper_exchange_rate
             if input_b == special_item:
-                price = price / 2
+                price = price / 1.5
                 
             if money < input_c * price:
                 print("You don't have enough money to buy that much copper.")
@@ -121,8 +134,8 @@ def day():
 
             price = Titanium_exchange_rate
             if input_b == special_item:
-                price = price / 2
-            
+                price = price / 1.5
+                
             if money < input_c * price:
                 print("You don't have enough money to buy that much titanium.")
                 time.sleep(2)
@@ -142,7 +155,7 @@ def day():
             
             price = Gold_exchange_rate
             if input_b == special_item:
-                price = price / 2
+                price = price / 1.5
             
             if money < input_c * price:
                 print("You don't have enough money to buy that much gold.")
@@ -172,7 +185,7 @@ def day():
             
             price = Iron_exchange_rate
             if input_b == special_item:
-                price = price * 2
+                price = price * 1.5
 
             if input_c > iron:
                 print("You don't have enough iron to sell that much.")
@@ -193,7 +206,7 @@ def day():
             
             price = Copper_exchange_rate
             if input_b == special_item:
-                price = price * 2
+                price = price * 1.5
                 
             if input_c > copper:
                 print("You don't have enough copper to sell that much.")
@@ -214,7 +227,7 @@ def day():
             
             price = Titanium_exchange_rate
             if input_b == special_item:
-                price = price * 2
+                price = price * 1.5
             
             if input_c > titanium:
                 print("You don't have enough titanium to sell that much.")
@@ -235,7 +248,7 @@ def day():
             
             price = Gold_exchange_rate
             if input_b == special_item:
-                price = price * 2
+                price = price * 1.5
             
             if input_c > gold:
                 print("You don't have enough gold to sell that much.")
@@ -250,24 +263,39 @@ def day():
             time.sleep(2)
             return
 
+    elif input_a == "exit":
+        print("Thanks for playing Space Trader! Goodbye.")
+        time.sleep(2)
+        print("You ended the game at day", current_day, "with", money, "credits.")
+        time.sleep(2)
+        print("Final inventory: ")
+        time.sleep(2)
+        print("Iron:", iron)
+        time.sleep(2)
+        print("Copper:", copper)
+        time.sleep(2)
+        print("Titanium:", titanium)
+        time.sleep(2)
+        print("Gold:", gold)
+        exit()
+    
     else:
         print("Invalid input. Please choose 'buy' or 'sell' next time.")
         time.sleep(2)
         return
     
-    current_day = current_day + 1
-
-
-
 while True:
     day()
-        input_bills = input("Do you want to pay your bills? (yes/no) ").lower()
+
+    input_bills = input("Do you want to pay your bills? (yes/no) ").strip().lower()
     if input_bills == "yes":
-        money = money - 100
+        money -= 100
 
     elif input_bills == "no":
         print("Your problem, you have to pay")
-        money = money - 100
+        money -= 100
     else:
-        print("I don´t know what you mean, but you still pay")
-        money = money - 100
+        print("I don't know what you mean, but you still pay")
+        money -= 100
+
+    current_day = current_day + 1
